@@ -19,8 +19,44 @@
 </head>
 <body>
 	<div class="container">
-		<h1>Welcome <c:out value="${user.getUserName()}"/> </h1>
-	</div>
-	<a href="/logout">Logout</a>
+		<div class="row">
+			<h1>Welcome <c:out value="${user.getUserName()}"/> </h1>
+		</div>
+		<div class="row">
+			<div class="col-8">
+				<h5>Books from everyone's shelves:</h5>
+			</div>
+			<div class="col">
+				<a href="/books/new">Add a Book to my shelf</a>
+			</div>
+			<div class="col">
+				<a href="/logout">Logout</a>
+			</div>
+		</div>
+	
+		
+		<div class="grid-container">
+	        <table class="table table-striped table-bordered table-hover">
+	            <thead class="table-primary ">
+	                <tr>
+	                    <th>ID</th>
+	                    <th>Title</th>
+	                    <th>Author</th>
+	                    <th>Posted By</th>
+	                </tr>
+	            </thead>
+	            <tbody>
+	            	<c:forEach var="book" items="${books}">
+	                <tr>
+	                	<td><c:out value="${book.getId()}"/></td>
+	                	<td><a href="/books/${book.getId()}/view"><c:out value="${book.getTitle()}"/></a></td>                	
+	                    <td><c:out value="${book.getAuthor()}"/></td>
+	                    <td><c:out value="${book.getUser().getUserName()}"/></td>
+	                </tr>
+	                </c:forEach>
+	            </tbody>
+	        </table>
+	    </div>
+    </div>
 </body>
 </html>
